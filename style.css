@@ -1,0 +1,268 @@
+/* ===== Kava Resto Cafe — Menu ===== */
+
+:root {
+  --olive: #3f4630;
+  --olive-dark: #2f3524;
+  --olive-light: #4c5439;
+  --cream: #ece4d6;
+  --cream-soft: rgba(236, 228, 214, 0.75);
+  --line: rgba(236, 228, 214, 0.18);
+  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+body {
+  background: var(--olive);
+  color: var(--cream);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  /* soft leafy vignette */
+  background-image:
+    radial-gradient(ellipse at 100% 0%, rgba(110, 120, 80, 0.35), transparent 55%),
+    radial-gradient(ellipse at 0% 100%, rgba(110, 120, 80, 0.25), transparent 55%);
+  background-attachment: fixed;
+}
+
+/* ===== Hero ===== */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* cover photo already carries the Kava logo */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background:
+    linear-gradient(to bottom, transparent 70%, var(--olive)),
+    url("assets/cover.jpg") center 45% / cover no-repeat,
+    #1b1d12;
+  padding: 2rem 1rem 3.5rem;
+}
+
+/* wide screens: show the whole portrait cover, centred on dark */
+@media (min-aspect-ratio: 4/5) {
+  .hero {
+    background:
+      linear-gradient(to bottom, transparent 70%, var(--olive)),
+      url("assets/cover.jpg") center / contain no-repeat,
+      #1b1d12;
+  }
+}
+
+.hero-cta {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+  border: 1px solid var(--cream-soft);
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.15);
+  transition: background 0.2s, color 0.2s;
+}
+.hero-cta:hover { background: var(--cream); color: var(--olive-dark); }
+
+/* ===== Section tabs ===== */
+.tabs {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(47, 53, 36, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.tabs-scroll {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding: 0.75rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  scrollbar-width: none;
+}
+.tabs-scroll::-webkit-scrollbar { display: none; }
+
+.tabs a {
+  flex: 0 0 auto;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cream-soft);
+  text-decoration: none;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+.tabs a:hover { background: var(--cream); color: var(--olive-dark); }
+
+/* ===== Menu ===== */
+.menu {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.section { padding: 2.5rem 0 1rem; }
+.section + .section { border-top: 1px solid var(--line); }
+
+h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 5vw, 1.85rem);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+.sub-heading { margin-top: 2.75rem; }
+
+.note {
+  font-family: var(--sans);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--cream-soft);
+  text-align: center;
+  margin: -1rem 0 1.75rem;
+  line-height: 1.5;
+}
+
+/* Food items */
+.item { margin-bottom: 1.5rem; }
+.item.compact { margin-bottom: 0.9rem; }
+
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.row h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+.row .price { margin-left: auto; }
+
+.price {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.item p {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--cream-soft);
+  margin-top: 0.35rem;
+  max-width: 34em;
+}
+
+/* Simple lists (drinks) */
+.list { list-style: none; }
+.list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: 1.3rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed var(--line);
+}
+.list li:last-child { border-bottom: none; }
+
+.extra {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 1.15rem;
+}
+.extra small {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--cream-soft);
+  margin-top: 0.2rem;
+}
+
+/* Glass / Bottle tables */
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.3rem;
+}
+.price-table th {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--cream-soft);
+  text-align: right;
+  padding-bottom: 0.4rem;
+}
+.price-table td {
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed var(--line);
+  vertical-align: baseline;
+}
+.price-table tr:last-child td { border-bottom: none; }
+.price-table td:not(:first-child),
+.price-table th:not(:first-child) {
+  text-align: right;
+  width: 5.5em;
+  white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.price-table td small {
+  display: block;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--cream-soft);
+}
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  padding: 3rem 1rem 4rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--cream-soft);
+}
+.footer-logo {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  color: var(--cream);
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 420px) {
+  .row h3 { font-size: 1.25rem; }
+  .price, .list li, .price-table { font-size: 1.15rem; }
+}
