@@ -1,12 +1,13 @@
 /* ===== Kava Resto Cafe — Menu ===== */
 
 :root {
-  --olive: #3f4630;
-  --olive-dark: #2f3524;
-  --olive-light: #4c5439;
-  --cream: #ece4d6;
-  --cream-soft: rgba(236, 228, 214, 0.75);
-  --line: rgba(236, 228, 214, 0.18);
+  /* Kava brand colours (from the logo) */
+  --teal: #146f7b;
+  --teal-dark: #0f5a64;
+  --cream: #dbd2c7;
+  --sage: #a9c2b8;
+  --cream-soft: rgba(219, 210, 199, 0.78);
+  --line: rgba(219, 210, 199, 0.2);
   --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -16,47 +17,43 @@
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 
 body {
-  background: var(--olive);
+  background: var(--teal);
   color: var(--cream);
   font-family: var(--serif);
   -webkit-font-smoothing: antialiased;
-  /* soft leafy vignette */
-  background-image:
-    radial-gradient(ellipse at 100% 0%, rgba(110, 120, 80, 0.35), transparent 55%),
-    radial-gradient(ellipse at 0% 100%, rgba(110, 120, 80, 0.25), transparent 55%);
-  background-attachment: fixed;
 }
 
-/* ===== Hero ===== */
-.visually-hidden {
-  position: absolute; width: 1px; height: 1px; overflow: hidden;
-  clip: rect(0 0 0 0); white-space: nowrap;
-}
-
-/* cover photo already carries the Kava logo */
+/* ===== Hero: the Kava logo on brand teal ===== */
 .hero {
   min-height: 100svh;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  background:
-    linear-gradient(to bottom, transparent 70%, var(--olive)),
-    url("assets/cover.jpg") center 45% / cover no-repeat,
-    #1b1d12;
-  padding: 2rem 1rem 3.5rem;
+  text-align: center;
+  padding: 2rem 1rem;
 }
 
-/* wide screens: show the whole portrait cover, centred on dark */
-@media (min-aspect-ratio: 4/5) {
-  .hero {
-    background:
-      linear-gradient(to bottom, transparent 70%, var(--olive)),
-      url("assets/cover.jpg") center / contain no-repeat,
-      #1b1d12;
-  }
+.hero-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: min(78vw, 520px);
+}
+.hero-logo img { width: 100%; height: auto; display: block; }
+
+.hero-sub {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(0.8rem, 3.2vw, 1.25rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-top: -0.6em;
 }
 
 .hero-cta {
+  margin-top: 4rem;
   font-family: var(--sans);
   font-size: 0.8rem;
   letter-spacing: 0.25em;
@@ -66,18 +63,16 @@ body {
   border: 1px solid var(--cream-soft);
   padding: 0.9rem 1.8rem;
   border-radius: 999px;
-  backdrop-filter: blur(6px);
-  background: rgba(0, 0, 0, 0.15);
   transition: background 0.2s, color 0.2s;
 }
-.hero-cta:hover { background: var(--cream); color: var(--olive-dark); }
+.hero-cta:hover { background: var(--cream); color: var(--teal-dark); }
 
 /* ===== Section tabs ===== */
 .tabs {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(47, 53, 36, 0.92);
+  background: rgba(15, 90, 100, 0.94);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -108,7 +103,7 @@ body {
   transition: background 0.2s, color 0.2s;
 }
 .tabs a:hover,
-.tabs a.active { background: var(--cream); color: var(--olive-dark); border-color: var(--cream); }
+.tabs a.active { background: var(--cream); color: var(--teal-dark); border-color: var(--cream); }
 
 /* ===== Menu ===== */
 .menu {
@@ -255,12 +250,10 @@ h2 {
   color: var(--cream-soft);
 }
 .footer-logo {
-  font-family: var(--serif);
-  font-size: 2.5rem;
-  letter-spacing: 0.05em;
-  text-transform: none;
-  color: var(--cream);
-  margin-bottom: 0.25rem;
+  display: block;
+  width: 120px;
+  height: auto;
+  margin: 0 auto 0.6rem;
 }
 
 @media (max-width: 420px) {
