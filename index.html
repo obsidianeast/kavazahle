@@ -299,5 +299,36 @@
     <p>Resto Cafe</p>
   </footer>
 
+  <script>
+    // Highlight the tab for the section currently on screen
+    (function () {
+      var bar = document.querySelector('.tabs-scroll');
+      var tabs = Array.prototype.slice.call(bar.querySelectorAll('a'));
+      var sections = tabs.map(function (t) { return document.querySelector(t.getAttribute('href')); });
+      var current = null;
+
+      function update() {
+        var offset = 120;
+        var active = -1;
+        sections.forEach(function (s, i) {
+          if (s.getBoundingClientRect().top - offset <= 0) active = i;
+        });
+        // at the very bottom of the page, select the last section
+        if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) active = sections.length - 1;
+        if (active === current) return;
+        current = active;
+        tabs.forEach(function (t, i) { t.classList.toggle('active', i === active); });
+        if (active >= 0) {
+          var tab = tabs[active];
+          bar.scrollTo({ left: tab.offsetLeft - (bar.clientWidth - tab.offsetWidth) / 2, behavior: 'smooth' });
+        }
+      }
+
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+  </script>
+
 </body>
 </html>

@@ -107,7 +107,8 @@ body {
   white-space: nowrap;
   transition: background 0.2s, color 0.2s;
 }
-.tabs a:hover { background: var(--cream); color: var(--olive-dark); }
+.tabs a:hover,
+.tabs a.active { background: var(--cream); color: var(--olive-dark); border-color: var(--cream); }
 
 /* ===== Menu ===== */
 .menu {
