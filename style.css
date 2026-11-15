@@ -23,37 +23,37 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ===== Hero: the Kava logo on brand teal ===== */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ===== Hero: cover photo (already carries the Kava logo), fading into brand teal ===== */
 .hero {
   min-height: 100svh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem 1rem;
-}
-
-.hero-logo {
-  display: flex;
-  flex-direction: column;
   align-items: flex-end;
-  width: min(78vw, 520px);
+  justify-content: center;
+  background:
+    linear-gradient(to bottom, transparent 70%, var(--teal)),
+    url("assets/cover.jpg") center 45% / cover no-repeat,
+    var(--teal-dark);
+  padding: 2rem 1rem 3.5rem;
 }
-.hero-logo img { width: 100%; height: auto; display: block; }
 
-.hero-sub {
-  font-family: var(--sans);
-  font-weight: 400;
-  font-size: clamp(0.8rem, 3.2vw, 1.25rem);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--sage);
-  margin-top: -0.6em;
+/* wide screens: show the whole portrait photo, framed in teal */
+@media (min-aspect-ratio: 4/5) {
+  .hero {
+    background:
+      linear-gradient(to bottom, transparent 70%, var(--teal)),
+      url("assets/cover.jpg") center / contain no-repeat,
+      var(--teal-dark);
+  }
 }
 
 .hero-cta {
-  margin-top: 4rem;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(6px);
   font-family: var(--sans);
   font-size: 0.8rem;
   letter-spacing: 0.25em;
